@@ -5,23 +5,23 @@ import { fileURLToPath } from "url"
 import fs from "fs"
 
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename)
-const dbPath = path.join(__dirname, "database.sqlite");
+// const __filename = fileURLToPath(import.meta.url);
+// const __dirname = path.dirname(__filename)
+// const dbPath = path.join(__dirname, "database.sqlite");
 
-if (!fs.existsSync(dbPath)){
-    console.error("Db file not found", dbPath);
-    process.exit(1);
-}
+// if (!fs.existsSync(dbPath)){
+//     console.error("Db file not found", dbPath);
+//     process.exit(1);
+// }
 
-const tmDbPath = path.join("/sqlite", "database.sqlite");
-if(!fs.existsSync(tmDbPath)){
-    fs.copyFileSync(dbPath, tmDbPath)
-}
+// const tmDbPath = path.join("/sqlite", "database.sqlite");
+// if(!fs.existsSync(tmDbPath)){
+//     fs.copyFileSync(dbPath, tmDbPath)
+// }
 
 export const initialDB = async () => {
     const db = await open({
-        filename: tmDbPath,
+        filename: "medicine.db",
         driver: sqlite3.Database
     });
 
