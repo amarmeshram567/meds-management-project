@@ -6,9 +6,11 @@
       "use": "@vercel/node",
       "config": {
         "includeFiles": [
-          "db/**",
-          "database.sqlite",
-          "src/**"
+          "config/**",
+          "routes/**",
+          "controller/**",
+          "middleware/**",
+          "database.sqlite"
         ]
       }
     }

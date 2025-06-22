@@ -76,9 +76,11 @@ export const markMedicationTaken = async (req, res) => {
             return res.json({success: false, message: "Medication not found "})
         }
 
+        const takenAt = new Date().toISOString();
+
         await db.run(
-            'INSERT INTO medication_logs (medication_id, name, dosage, frequency) VALUES (?, ?, ?, ?)',
-            [medication.id, medication.name, medication.dosage, medication.frequency]
+            'INSERT INTO medication_logs (medication_id, name, dosage, frequency, taken_at) VALUES (?, ?, ?, ?, ?)',
+            [medication.id, medication.name, medication.dosage, medication.frequency, takenAt]
         )
 
         return res.json({success: true, message: "Medication marked as taken"})
@@ -105,7 +107,8 @@ export const getAdherence = async (req, res) => {
             return res.json({success: true, adherence: 0, streak: 0, missedThisMonth: 0, takenThisWeek: 0})
         }
 
-        const medsId = medications.map(m => m.id).join(',')
+        const medsId = medications.map(m => m.id).join(",");
+
 
         const logs = await db.all(
             `

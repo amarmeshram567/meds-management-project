@@ -10,9 +10,9 @@ medicationRoutes.post('/add-medicine', protecteRoute, addMedications)
 
 medicationRoutes.get('/get-medicine', protecteRoute, getMedications);
 
-medicationRoutes.post('/medicine/mark', protecteRoute, markMedicationTaken )
+medicationRoutes.post('/medicine/mark/:id', protecteRoute, markMedicationTaken )
 
-medicationRoutes.post('/upload-photo', protecteRoute, upload.single("photo"), uploadPhoto )
+medicationRoutes.post('/upload-photo/:id', protecteRoute, upload.single("photo"), uploadPhoto )
 
 medicationRoutes.get('/adherence', protecteRoute, getAdherence)
 

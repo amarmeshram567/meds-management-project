@@ -13,6 +13,11 @@ export const signup =  async (req, res) => {
             'INSERT INTO users (username, email, password, role) VALUES (?, ?, ?, ?)',
             [username, email, hashedPassword, role]
         );
+
+        if (!username || !email || !password || !role) {
+            return res.status(400).json({success: false, message: "All fields are required"});
+        }
+
         res.json({success: true, message: 'User registered successfully'});
     } catch (error) {
         console.error(error)
@@ -40,6 +45,7 @@ export const login =  async (req, res) => {
         )
 
         res.json({success: true, message: "User login successfull", token, user: {id: user.id, username: user.username, role: user.role}});
+        
     } catch (error) {
         console.error(error)
         res.json({success: false, message: 'Server error'});
