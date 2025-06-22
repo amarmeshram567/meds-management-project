@@ -17,10 +17,9 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
       <AppContextProvider>
-        <Routes>
-          <Route path="/login" element={<Login />} />
+        <Routes> 
           <Route path="/" element={<Index />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          <Route path="/login" element={<Login />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
 
