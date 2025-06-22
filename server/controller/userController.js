@@ -14,11 +14,9 @@ export const signup =  async (req, res) => {
             [username, email, hashedPassword, role]
         );
 
-        if (!username || !email || !password || !role) {
-            return res.status(400).json({success: false, message: "All fields are required"});
-        }
+        const user  = await db.get('SELECT * FROM users WHERE email = ?', [email]);
 
-        res.json({success: true, message: 'User registered successfully'});
+        res.json({success: true, user, message: 'User registered successfully'});
     } catch (error) {
         console.error(error)
         res.json({success: false, message: 'User already registered'});

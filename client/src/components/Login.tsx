@@ -28,10 +28,13 @@ const Login = () => {
 
 
     const handleSubmit = async (event) => {
+        event.preventDefault();
+
+        if (state === 'signup' && (!username || !email || !password || !role)) {
+            toast.error('All fields are required');
+        }
         try {
-           
-            event.preventDefault();
-            
+        
             const {data} = await axios.post(`/api/user/${state}`, {
                 username, email, password, role, 
                 headers: {
@@ -40,12 +43,17 @@ const Login = () => {
             })
 
             if (data.success){
-                localStorage.setItem('token', data.token)
-                localStorage.setItem("username", data.user.username)
-                setUser(data.user)
-                navigate('/')
-                setShowUserLogin(false)
-                toast.success("Login successfull")
+                localStorage.setItem('token', data.token || "")
+                
+                if (data.user){
+                    localStorage.setItem("username", data.user.username)
+                    setUser(data.user)
+                }
+
+                
+            navigate('/')
+            setShowUserLogin(false)
+            toast.success("Login successfull")
 
             }
             else{

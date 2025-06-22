@@ -1,11 +1,10 @@
 import sqlite3 from "sqlite3"
 import {open} from "sqlite"
 
-const dbPath = process.env.NODE_ENV === "production" ? "/tmp/medical.db" : "../medical.db"
 
 export const initialDB = async () => {
     const db = await open({
-        filename: dbPath,
+        filename: "./medical.db",
         driver: sqlite3.Database
     });
 
