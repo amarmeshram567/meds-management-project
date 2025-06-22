@@ -6,21 +6,10 @@ import { initialDB } from "./config/db.js";
 import userRouter from "./routes/userRoutes.js";
 import dotenv from "dotenv"
 
-
-
 dotenv.config()
+
 const app = express()
 const port = process.env.PORT || 3000
-
-const corsConfig = {
-    origin: ["*"],
-    credential: true,
-    methods: ["GET", "POST", "PUT", "DELETE"]
-}
-app.options("", cors(corsConfig));
-app.use(cors(corsConfig))
-
-
 
 const allowedOrigins = ['http://localhost:5173', 'https://meds-management-project-frontend.vercel.app']
 
