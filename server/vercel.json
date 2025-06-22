@@ -9,8 +9,7 @@
           "config/**",
           "routes/**",
           "controller/**",
-          "middleware/**",
-          "database.sqlite"
+          "middleware/**"
         ]
       }
     }
